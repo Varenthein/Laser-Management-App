@@ -1,0 +1,96 @@
+<!-- Delete Rekord Modal -->
+<div class="modal fade" id="deleteUserModal" role="dialog">
+  <div class="modal-dialog">
+
+   <!-- Modal content-->
+   <div class="modal-content">
+   <div class="modal-header">
+     <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title">Usuń rekord</h4>
+   </div>
+   <div class="modal-body">
+
+      <p>Czy na pewno chcesz usunac?</p>
+
+   </div>
+   <div class="modal-footer">
+     <a class="btn btn-primary" data-dismiss="modal" ng-click="deleteUser(userToDelete)">Usun</a>
+     <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>
+   </div>
+   </div>
+
+  </div>
+</div>
+
+<!-- End of modal -->
+
+
+<!-- Edit User Modal -->
+<div class="modal fade" id="editUserModal" role="dialog">
+  <div class="modal-dialog">
+
+   <!-- Modal content-->
+   <div class="modal-content">
+   <div class="modal-header">
+     <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title">Edytuj</h4>
+   </div>
+   <div class="modal-body">
+
+     <form ng-show="$root.user.status == 'Kierownik'" no-validate>
+
+       Name: <input type="text" ng-model="worker.name" style="display:inline;margin-right:15px;" class="form-control"><br>
+       Status: <select type="list" style="display:inline;margin-right:15px;width:150px;" ng-model="worker.status" class="form-control"><option>Kierownik</option><option>Pracownik</option></select>
+       <h4>Zmień hasło</h4><hr>
+       Hasło: <input type="password" ng-model="worker.pass" style="display:inline;margin-right:15px" class="form-control"><br>
+       Powtorz hasło: <input type="password" style="display:inline;margin-right:15px;x"  ng-model="worker.repass" class="form-control">
+       <em style="font-size: 10pt;">*Pozostaw puste jeśli, nie chcesz zmienic hasła</em>
+
+     </form>
+
+   </div>
+   <div class="modal-footer">
+     <a class="btn btn-primary" ng-click="edit(worker)" data-dismiss="modal">Zapisz zmiany</a>
+     <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>
+   </div>
+   </div>
+
+  </div>
+</div>
+
+<!-- End of modal -->
+
+
+
+<h2>Uzytkownicy</h2><hr>
+
+<form ng-show="$root.user.status == 'Kierownik'" >
+Name: <input type="text" ng-model="pracownik.name" style="display:inline;margin-right:15px;width:150px;" class="form-control">
+Hasło: <input type="password" ng-model="pracownik.pass" style="display:inline;margin-right:15px;width:150px;" class="form-control">
+Powtorz hasło: <input type="password" style="display:inline;margin-right:15px;width:150px"  ng-model="pracownik.repass" class="form-control">
+Status: <select type="list" style="display:inline;margin-right:15px;width:150px;" ng-model="pracownik.status" class="form-control"><option>Kierownik</option><option>Pracownik</option></select>
+<a class="btn btn-primary" ng-click="addUser()">Dodaj</a>
+</form>
+<hr>
+
+<table ng-show="users && keys(users).length > 0" class="table records table-hover">
+  <thead class="thead-default">
+    <th style="width:50px">Nr</th>
+    <th>Nazwa<span ng-click="setRecordsOrder('name')" class="glyphicon glyphicon-triangle-bottom"></span></th>
+    <th>Status<span ng-click="setRecordsOrder('status')" class="glyphicon glyphicon-triangle-bottom"></span></th>
+    <th style="width:70px;">Działania</th>
+  </thead>
+  <tbody>
+      <tr ng-repeat="user in users | orderObjectBy:orderRecords:orderRecordsReverse" class="{{ user.status}}">
+        <td>{{ $index + 1 }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.status }}</td>
+        <td class="dzialania">
+
+          <a class="glyphicon glyphicon-remove" ng-show="$root.user.status == 'Kierownik'"  data-toggle="modal" data-target="#deleteUserModal" ng-click="setToDel(user)" style="color: red"></a>
+          <a class="glyphicon glyphicon-edit" ng-show="$root.user.status == 'Kierownik'"  data-toggle="modal" data-target="#editUserModal"  ng-click="editUser(user)" style="color: gray"></a>
+        </td>
+      </tr>
+  </tbody>
+</table>
+<div class="alert alert-info" role="alert" ng-show="records && keys(records).length < 1"> Nic nie znaleziono</div>

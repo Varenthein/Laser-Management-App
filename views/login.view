@@ -1,0 +1,22 @@
+<div class="loginBox">
+   <form class="input-group-lg" novalidate>
+
+
+              <h3>Zaloguj się</h3>
+              <br>
+
+              <div ng-show="error == true" class="alert alert-danger">
+                 <strong>Błąd!</strong> Dane są nieprawidłowe
+              </div>
+              <div ng-show="error == 'loading'" class="alert alert-info">
+                 <strong>Sprawdzanie...</strong> Proszę czekać...
+              </div>
+
+              <input ng-model="$parent.Login" type="text" class="form-control" placeholder="Wpisz nazwę użytkownika" aria-describedby="sizing-addon1">
+              Hasło
+              <input ng-model="$parent.Password" type="password" class="form-control" placeholder="" aria-describedby="sizing-addon1">
+              <input ng-click="$parent.checkLogin()" type="button" value="Zaloguj" class="btn btn-med btn-primary">
+              <input type="button" data-toggle="modal" data-target="#myModal" value="Pomoc" class="btn btn-med btn-default">
+
+   </form>
+</div>

@@ -1,0 +1,9 @@
+<h3>Wyloguj</h3>
+<hr>
+            
+Jesteś pewny, że chcesz się wylogować?
+
+<br><br>
+
+<a onClick="location.reload()" class="btn btn-primary">Wyloguj</a> <a aria-expanded="false" href="#Zlecenia" data-toggle="tab" class="btn btn-default" onClick="$('#ZleceniaMenu a[href=#Zlecenia]').tab('show');">Anuluj</a>
+       

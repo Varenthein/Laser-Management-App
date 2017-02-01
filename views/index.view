@@ -1,0 +1,55 @@
+<!-- delete annno Modal -->
+<div class="modal fade" id="deleteAnnoModal" role="dialog">
+  <div class="modal-dialog">
+
+   <!-- Modal content-->
+   <div class="modal-content">
+   <div class="modal-header">
+     <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title">Usuń ogłoszenie</h4>
+   </div>
+   <div class="modal-body">
+
+      <p>Czy na pewno chcesz usunac?</p>
+
+   </div>
+   <div class="modal-footer">
+     <a class="btn btn-primary" data-dismiss="modal"  ng-click="deleteAnno(recordToDelete)">Usun</a>
+     <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>
+   </div>
+   </div>
+
+  </div>
+</div>
+
+<!-- End of modal -->
+
+<h2>Ogłoszenia</h2>
+<hr>
+
+<div id="addedSuc" class="alert alert-success" style="width:450px;display:none" role="alert"><strong>Sukces</strong> Rekord zostal dodany do bazy</div>
+<div id="addedErr" class="alert alert-danger" style="width:450px;display:none" role="alert"><strong>Błąd</strong> Coś poszło nie tak...</div>
+
+<form ng-show="$root.user.status == 'Kierownik'" no-validate="" class="ng-pristine ng-valid ng-scope">
+Tytuł
+<input class="form-control" style="display: inline;width:220px;margin:0px 10px" ng-model="wpis.title" type="text">
+Rodzaj
+<select type="list" ng-model="wpis.class"  style="width: 200px;display:inline;margin:10px"  class="form-control">
+  <option ng-repeat="class in classes" value="{{ class.style }}">{{ class.name }}</option>
+</select>
+<a class="btn btn-primary" ng-click="addAnno()">Dodaj</a><br>
+Wpis<br>
+<textarea class="form-control" ng-model="wpis.content"></textarea>
+
+<hr>
+</form>
+
+<article ng-repeat="msg in announcements" class="panel panel-{{ msg.class }}">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{ msg.title || 'Brak tytułu' }} <a class="glyphicon glyphicon-remove" ng-show="$root.user.status == 'Kierownik'" data-toggle="modal" data-target="#deleteAnnoModal" ng-click="setToDel(msg)" style="color: red; float:right; cursor:pointer;"></a></h3>
+  </div>
+  <div class="panel-body">
+  <p>{{ msg.content }}</p>
+  <i>Dodane przez <u ng-style="{color: (msg.author_status == 'Kierownik') ? 'red' : 'black'}">{{ msg.author }}</u>, {{ msg.data }}</i>
+</div>
+</article>

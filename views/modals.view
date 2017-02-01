@@ -1,0 +1,72 @@
+             <!-- Help modals -->
+
+             <!-- Modal -->
+             <div class="modal fade" id="myModal" role="dialog">
+               <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                   <h4 class="modal-title">Pomoc</h4>
+                </div>
+                <div class="modal-body">
+                   <p>W pierwsze pole należy wprowadić nazwę użytkownika. Musi być ona prawidłowa, aby system mogl sprawdzic uprawnienia, a także załadować odpowiedni program. W nastepne pole należy wpisać hasło. Musi być one zgodne z nazwą użytkownika. Jeśli pomimo wpisywania prawidłowych danych system <b>nie chce się załadować</b> skontaktuj się z administratorem.</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Zamknij</button>
+                </div>
+                </div>
+
+               </div>
+            </div>
+
+            <!-- End of help modals -->
+            <!-- Not yey modal -->
+
+            <!-- Modal -->
+            <div class="modal fade" id="demoModal" role="dialog">
+              <div class="modal-dialog">
+
+               <!-- Modal content-->
+               <div class="modal-content">
+               <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Opcja niedostępna</h4>
+               </div>
+               <div class="modal-body">
+                  <p>Opcja nie jest dostępna w tej wersji aplikacji</p>
+               </div>
+               <div class="modal-footer">
+                 <button type="button" class="btn btn-primary" data-dismiss="modal">Zamknij</button>
+               </div>
+               </div>
+
+              </div>
+           </div>
+
+           <!-- End of modal -->
+
+           <!-- Modal exit -->
+           <div class="modal fade" id="exitModal" role="dialog">
+             <div class="modal-dialog">
+
+              <!-- Modal content-->
+              <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                 <h4 class="modal-title">Opuść aplikację</h4>
+              </div>
+              <div class="modal-body">
+                 <p>Czy na pewno chcesz zakończyć?</p>
+              </div>
+              <div class="modal-footer">
+                <a class="btn btn-primary" href="javascript:window.close()">Wyjdź</a>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>
+              </div>
+              </div>
+
+             </div>
+          </div>
+
+          <!-- End of modal -->

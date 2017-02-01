@@ -1,0 +1,13 @@
+<ul id="Menu" class="nav nav-tabs">
+
+    <li ng-repeat="m in MainCtrl.Menu" onClick="$('#Menu li').removeClass('active');$(this).addClass('active');" class="{{ m.status }}"><a href="{{ m.link }}">{{ m.title }}</a></li>
+    <li><a onClick="$('#Menu li').removeClass('active');$(this).addClass('active');" ng-show="$root.user.status == 'Kierownik'" href="#/users">Uzytkownicy</a></li>
+    <li id="exit"><a data-toggle="modal" data-target="#exitModal" style="cursor:pointer;background: #32afc4;color:#fff">Wyjdź <span style="color: #fff;font-size:12pt;margin-left:5px;position: relative;top:2px;" class="glyphicon glyphicon-log-out"></span></a></li>
+
+    <form class="searchBox" class="navbar-form navbar-left" role="search">
+    <input type="text" ng-model="MainCtrl.search" class="form-control" placeholder="Search">
+    <a type="submit" class="btn btn-default" href="#/rekordy/Baza/{{ MainCtrl.search }}"><span class="glyphicon glyphicon-search"></span></a>
+    </form>
+
+
+</ul>

@@ -1,0 +1,216 @@
+<!-- Edit Rekord Modal -->
+<div class="modal fade" id="editRecordModal" role="dialog">
+  <div class="modal-dialog">
+
+   <!-- Modal content-->
+   <div class="modal-content">
+   <div class="modal-header">
+     <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title">Edytuj</h4>
+   </div>
+   <div class="modal-body">
+
+     <form no-validate>
+
+     <label>Rodzaj</label>
+     <select class="form-control" type="list" ng-model="rec.rodzaj"><option>Testy</option><option>Produkcja</option></select><br>
+     <label for="firma">VA/Firma</label>
+     <input class="form-control" type="text" list="firmy" name="firma" ng-bind="rec.firma" ng-model="rec.firma"><br>
+     <label>Zlecenie</label>
+     <input class="form-control" type="text"  ng-model="rec.zlecenie"><br>
+     <label>Artykul</label>
+     <input class="form-control" type="text" ng-model="rec.artykul"><br>
+     <label>Kolor</label>
+     <input class="form-control" type="text" ng-model="rec.kolor"><br>
+     <label>Zaladunek</label>
+     <input style="width:100px;display:inline;margin-right:10px;" min=0 class="form-control" type="number" ng-model="rec.zaladunek.nr"><input class="form-control" type="number" min=0 style="width:100px;display:inline;margin-right:30px;" ng-model="rec.zaladunek.liczba">
+     <label>Liczba szt</label>
+     <input type="text" style="width:100px;display:inline;margin-right:10px;" class="form-control" ng-model="rec.liczba_sztuk"><br>
+     <label>Wykonal</label>
+     <select class="form-control" type="list" ng-model="rec.by"><option ng-repeat="user in users">{{ user.name }}</option></select><br>
+     <label>Uwagi</label>
+     <textarea class="form-control" ng-model="rec.uwagi"></textarea>
+     </form>
+     <datalist id="firmy">
+       <option ng-repeat="firma in firmy" value="{{ firma.firma }}">
+     </datalist>
+
+   </div>
+   <div class="modal-footer">
+     <a class="btn btn-primary" ng-click="edit(rec)" data-dismiss="modal">Zapisz zmiany</a>
+     <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>
+   </div>
+   </div>
+
+  </div>
+</div>
+
+<!-- End of modal -->
+
+<!-- Delete Rekord Modal -->
+<div class="modal fade" id="deleteRecordModal" role="dialog">
+  <div class="modal-dialog">
+
+   <!-- Modal content-->
+   <div class="modal-content">
+   <div class="modal-header">
+     <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title">Usuń rekord</h4>
+   </div>
+   <div class="modal-body">
+
+      <p>Czy na pewno chcesz usunac?</p>
+
+   </div>
+   <div class="modal-footer">
+     <a class="btn btn-primary" data-dismiss="modal" ng-click="deleteRekord(recordToDelete)">Usun</a>
+     <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>
+   </div>
+   </div>
+
+  </div>
+</div>
+
+<!-- End of modal -->
+
+<!-- More Info Modal -->
+<div class="modal fade" id="RecordModal" role="dialog">
+  <div class="modal-dialog" style="width:1000px;">
+
+   <!-- Modal content-->
+   <div class="modal-content">
+   <div class="modal-header">
+     <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title">Więcej informacji</h4>
+   </div>
+   <div class="modal-body">
+
+      <p class="alert alert-info" ng-show="rekordToShow.loading"><strong>Wczytywanie....</strong></p>
+
+      <article ng-hide="rekordToShow.loading">
+
+      <p><strong>Rodzaj:</strong> {{ rekordToShow.rodzaj }}</p>
+      <p><strong>Va/Firma:</strong> {{ rekordToShow.firma }}</p>
+      <p><strong>Zlecenie:</strong> {{ rekordToShow.zlecenie }}</p>
+      <p><strong>Artykuł/kolor:</strong> {{ rekordToShow.artykul + "-" + rekordToShow.kolor }}</p>
+      <p><strong>Załadunek:</strong> ({{ rekordToShow.zaladunek.nr + "/" + rekordToShow.zaladunek.liczba }})</p>
+      <p><strong>Liczba sztuk:</strong> {{ rekordToShow.liczba_sztuk }}</p>
+      <p><strong>Wykonane przez:</strong> <span ng-style="{color: (msg.author_status == 'Kierownik') ? 'red' : 'black'}">{{ rekordToShow.by }}</span></p>
+      <p><strong>Data dodania:</strong> {{ rekordToShow.data | date:'yyyy-MM-dd' }}</p>
+      <p><strong>Uwagi:</strong></p>
+      <p><i>{{ rekordToShow.uwagi || 'brak' }}</i></p>
+      <div ng-hide="rekordToShow.otherRecords == ''">
+      <hr>
+      <h3>Inne załadunki z tego zlecenia</h3>
+
+      <table  class="table table-hover">
+        <thead class="thead-default">
+          <th>Nr</th>
+          <th>VA/Firma</th>
+          <th>Zlecenie</th>
+          <th>Artykuł</th>
+          <th>Kolor</th>
+          <th>Zaladunek </th>
+          <th>Liczba szt.</th>
+          <th>Wykonane przez</th>
+          <th ng-style="$root.user.status == 'Kierownik' ? 'width': '170px;' : 'width': '50px'">Działania</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="record in rekordToShow.otherRecords" class="{{ record.type}}">
+              <td>{{ $index + 1 }}</td>
+              <td>{{ record.firma }} <a class="glyphicon glyphicon-info-sign" onClick="jQuery('#RecordModal').modal('show')" ng-click="setToShow(record)" style="color: #5396f4;"></a></td>
+              <td>{{ record.zlecenie }}</td>
+              <td>{{ record.artykul }}</td>
+              <td>{{ record.kolor }}</td>
+              <td>({{ record.zaladunek.nr }}/{{ record.zaladunek.liczba }})</td>
+              <td>{{ record.liczba_sztuk }} szt</td>
+              <td>{{ record.by }}</td>
+              <td class="dzialania">
+
+                <a class="glyphicon glyphicon-ok" ng-click="changeRecordType(record, 'finished')" style="color: green"></a>
+                <a class="glyphicon glyphicon-thumbs-up"  ng-show="$root.user.status == 'Kierownik'"  ng-click="changeRecordType(record, 'towork')" style="color: #32afc4"></a>
+                <a class="glyphicon glyphicon-fire" ng-show="$root.user.status == 'Kierownik'"   ng-click="changeRecordType(record, 'urgent')" style="color: red"></a>
+                <a class="separator" ng-show="$root.user.status == 'Kierownik'" > | </a>
+                <a class="glyphicon glyphicon-remove" ng-show="$root.user.status == 'Kierownik'" data-toggle="modal" data-target="#deleteRecordModal" data-dismiss="modal" ng-click="setToDel(record)" style="color: red"></a>
+                <a class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#editRecordModal"  data-dismiss="modal" ng-click="editRecord(record)" style="color: gray"></a>
+              </td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+
+    </article>
+
+   </div>
+   <div class="modal-footer">
+     <button type="button" class="btn btn-default" data-dismiss="modal">Wroc</button>
+   </div>
+   </div>
+
+  </div>
+</div>
+
+<!-- End of modal -->
+
+<h2>{{ search ? 'Wyniki wyszukiwania dla "'+search+'":' : header }}</h2>
+<hr>
+
+<form no-validate="" ng-hide="search" class="ng-pristine ng-valid ng-scope">
+VA/Firma
+<input class="form-control" style="display: inline;width:150px;margin:0px 10px" list="firmy" name="firma" ng-model="rekord.firma" type="text">
+<span ng-show="type == ''">Rodzaj</span>
+<select class="form-control" style="display: inline;width:115px;margin:0px 10px" type="list" ng-show="type == ''" ng-model="rekord.rodzaj"><option>Testy</option><option>Produkcja</option></select>
+Zlecenie
+<input class="form-control" style="display: inline;width:150px;margin:0px 10px" ng-model="rekord.zlecenie" type="text">
+Artykul
+<input class="form-control" style="display: inline;width:100px;margin:0px 10px" ng-model="rekord.artykul" type="text">
+Kolor
+<input class="form-control" style="display: inline;width:100px;margin:0px 10px" ng-model="rekord.kolor" type="text"><br>
+Zaladunek
+<input style="width:80px;display:inline;margin:10px;" class="form-control" ng-model="rekord.zaladunek.nr" type="number" min=0><input class="form-control ng-pristine ng-untouched ng-valid" min=0 style="width:80px;display:inline;margin:10px" ng-model="rekord.zaladunek.liczba" type="number">
+Liczba szt:
+<input style="width:100px;display:inline;margin:10px;" class="form-control" ng-model="rekord.liczba_sztuk" min=0 type="number">
+Wykonal
+<select class="form-control" type="list" style="width: 200px;display:inline;margin:10px" ng-model="rekord.by"><!-- ngRepeat: user in users --><option ng-repeat="user in users">{{ user.name }}</option><!-- end ngRepeat: user in users --></select>
+<a ng-click="addRekord()" class="btn btn-primary">Dodaj</a>
+<hr>
+</form>
+
+<datalist id="firmy">
+  <option ng-repeat="firma in firmy" value="{{ firma.firma }}">
+</datalist>
+<table ng-show=" records && keys(records).length > 0" class="table records table-hover">
+  <thead class="thead-default">
+    <th>Nr</th>
+    <th>VA/Firma<span ng-click="setRecordsOrder('firma')" class="glyphicon glyphicon-triangle-bottom"></span></th>
+    <th>Zlecenie<span ng-click="setRecordsOrder('zlecenie')" class="glyphicon glyphicon-triangle-bottom"></span></th>
+    <th>Artykuł<span ng-click="setRecordsOrder('artykul')" class="glyphicon glyphicon-triangle-bottom"></span></th>
+    <th>Kolor<span ng-click="setRecordsOrder('kolor')" class="glyphicon glyphicon-triangle-bottom"></span></th>
+    <th>Zaladunek</th>
+    <th>Liczba szt.<span ng-click="setRecordsOrder('liczba_sztuk')" class="glyphicon glyphicon-triangle-bottom"></span></th>
+    <th>Wykonane przez<span ng-click="setRecordsOrder('by')" class="glyphicon glyphicon-triangle-bottom"></span></th>
+    <th ng-style="$root.user.status == 'Kierownik' ? 'width': '170px;' : 'width': '50px'">Działania</th>
+  </thead>
+  <tbody>
+      <tr ng-repeat="record in records | orderObjectBy:orderRecords:orderRecordsReverse" class="{{ record.type}}">
+        <td>{{ $index + 1 }}</td>
+        <td>{{ record.firma }} <a class="glyphicon glyphicon-info-sign" onClick="jQuery('#RecordModal').modal('show')" ng-click="setToShow(record)" style="color: #5396f4;"></a></td>
+        <td>{{ record.zlecenie }}</td>
+        <td>{{ record.artykul }}</td>
+        <td>{{ record.kolor }}</td>
+        <td>({{ record.zaladunek.nr }}/{{ record.zaladunek.liczba | number }})</td>
+        <td>{{ record.liczba_sztuk }} szt</td>
+        <td>{{ record.by }}</td>
+        <td class="dzialania">
+
+          <a class="glyphicon glyphicon-ok" ng-click="changeRecordType(record, 'finished')" style="color: green"></a>
+          <a class="glyphicon glyphicon-thumbs-up" ng-show="$root.user.status == 'Kierownik'"  ng-click="changeRecordType(record, 'towork')" style="color: #32afc4"></a>
+          <a class="glyphicon glyphicon-fire" ng-show="$root.user.status == 'Kierownik'"  ng-click="changeRecordType(record, 'urgent')" style="color: red"></a>
+          <a class="separator"> | </a>
+          <a class="glyphicon glyphicon-remove" ng-show="$root.user.status == 'Kierownik'"  data-toggle="modal" data-target="#deleteRecordModal" ng-click="setToDel(record)" style="color: red"></a>
+          <a class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#editRecordModal"  ng-click="editRecord(record)" style="color: gray"></a>
+        </td>
+      </tr>
+  </tbody>
+</table>
+<div class="alert alert-info" role="alert" ng-show="records && keys(records).length < 1"> Nic nie znaleziono</div>

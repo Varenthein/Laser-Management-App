@@ -1,0 +1,7 @@
+<h3>Oooppss... Coś poszło nie tak</h3>
+<hr>
+
+<div class="alert alert-danger">
+  <h4>404 - nie znaleziono</h4>
+  <p>Podana podstrona nie istnieje. Przekierowanie jest nieprawidłowe lub nastąpił niespodziewany błąd programu. Spróbuj ponownie lub skontaktuj się z administratorem systemu.</p>
+</div>

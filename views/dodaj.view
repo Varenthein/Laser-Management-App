@@ -1,0 +1,27 @@
+<h2>Dodaj wpis</h2>
+<hr>
+<div id="addedSuc" class="alert alert-success" style="width:450px;display:none" role="alert"><strong>Sukces</strong> Rekord zostal dodany do bazy</div>
+<div id="addedErr" class="alert alert-danger" style="width:450px;display:none" role="alert"><strong>Błąd</strong> Coś poszło nie tak...</div>
+<form no-validate>
+<label>Rodzaj</label>
+<select class="form-control" type="list" ng-model="rekord.rodzaj"><option>Testy</option><option>Produkcja</option></select>
+<label for="firma">VA/Firma</label>
+<input class="form-control" type="text" list="firmy" name="firma" ng-model="rekord.firma"><br>
+<label>Zlecenie</label>
+<input class="form-control" type="text"  ng-model="rekord.zlecenie"><br>
+<label>Artykul</label>
+<input class="form-control" type="text" ng-model="rekord.artykul"><br>
+<label>Kolor</label>
+<input class="form-control" type="text" ng-model="rekord.kolor"><br>
+<label>Zaladunek</label>
+<input min=0 style="width:100px;display:inline;margin-right:10px;" class="form-control" type="number" ng-model="rekord.zaladunek.nr"><input class="form-control"  min=0 type="number" style="width:100px;display:inline;" ng-model="rekord.zaladunek.liczba"><br>
+<label>Liczba szt</label>
+<input  min=0 style="width:100px;display:inline;" class="form-control" type="number" ng-model="rekord.liczba_sztuk"><br>
+<label>Wykonal</label>
+<select class="form-control" type="list" ng-model="rekord.by"><option ng-repeat="user in users">{{ user.name }}</option></select><br>
+<a ng-click="addRekord()" class="btn btn-primary">Dodaj</a>
+</form>
+
+<datalist id="firmy">
+  <option ng-repeat="firma in firmy" value="{{ firma.firma }}">
+</datalist>

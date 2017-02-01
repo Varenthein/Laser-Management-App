@@ -1,0 +1,19 @@
+{
+  "name": "Freshtex-Laser-Management-System",
+  "version": "1.0.0",
+  "description": "Laser management app",
+  "main": "main.js",
+  "dependencies": {
+    "pretty-bytes": "^2.0.1"
+  },
+  "devDependencies": {
+    "electron-packager": "^8.1.0",
+    "electron-prebuilt": "^0.35.2"
+  },
+  "scripts": {
+    "start": "electron main.js"
+  },
+  "author": "Paweł Zagrobelny",
+  "license": "Individual",
+  "icon": "icon.ico"
+}

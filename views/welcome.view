@@ -1,0 +1,15 @@
+<div class="blueBG">
+</div>
+<div class="loadingBox">
+
+  <div id="logoBox">
+
+   <img src="vendor/resource/logoWhite.png" id="logoWhite" style="display: none;" alt="logoWhite">
+   <img src="vendor/resource/logoBlue.png" id="logoBlue" alt="logoWhite">
+
+
+</div>
+
+      <h2>Wczytywanie... <small>0 %</small></h2>
+
+      <div class="loginBox" style="display: none" controller="loginController"  ng-include="'views/login.view'"></div>

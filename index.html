@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Paweł Zagrobelny">
+    <meta name="license" content="All rights (excluding logo and name, that is 'Freshtex') are reserved for Paweł Zagrobelny. It's trial version of software">
+    <link rel="icon" type="image/png" href="vendor/resource/freshtex_favicon_16.png" sizes="16x16">
+	 <link rel="icon" type="image/png" href="vendor/resource/freshtex_favicon_32.png" sizes="32x32">
+    <title>Freshtex Laser Management System v.1.1</title>
+
+    <!-- Bootstrap -->
+    <link href="styles/bootstrap.min.css" rel="stylesheet">
+    <link href="styles/style.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body ng-app="FreshtexRM">
+
+   <section id="fadeBox"></section>
+
+   <section id="welcomeBox">
+
+     <div class="blueBG">
+     </div>
+     <div class="loadingBox">
+
+       <div id="logoBox">
+
+        <img src="vendor/resource/logoWhite.png" id="logoWhite" style="display: none;" alt="logoWhite">
+        <img src="vendor/resource/logoBlue.png" id="logoBlue" alt="logoWhite">
+
+
+     </div>
+
+           <h2>Wczytywanie... <small>0 %</small></h2>
+
+           <div class="loginBox" style="display: none" ng-controller="loginController" ng-include="'views/login.view'"></div>
+
+   </section>
+
+   <section  ng-show="$root.license.status == 'Aktywna'" class="content" controller="MainController as MainCtrl">
+
+        <div class="modals" ng-include="'views/modals.view'"></div>
+
+        <div id="loading" class="alert alert-info loading" role="alert"><strong>Łączę z serwerem...</strong> Proszę czekać...</div>
+        <div id="alertBox" class="alert loading" role="alert"></div>
+
+
+        <div ng-show="$root.logged" class="user">
+
+          <i>Zalogowany jako...</i><br>
+          <img class="avatar" src="vendor\resource\users\status_{{ $root.user.status }}.png" alt="{{ $root.user.name }}">
+          <img src="vendor\resource\star.png" class="star" alt="Admin" ng-show="$root.user.status == 'Kierownik'">
+          <b>{{ $root.user.name}}</b>
+          <span>{{ $root.user.status }}</span>
+
+
+        </div>
+        <h1><img src="vendor/resource/logo.png" style="width:200px;" alt="logo"><small style="position:relative;top:34px;">Laser Management System</small></h1>
+        <hr>
+
+        <!-- If Angular.js doesnt work -->
+
+        <div ng-hide="$root.angular" class="alert alert-danger">
+               <strong>Błąd krtytyczny!</strong> Angular.js nie może rozpocząć działania.
+        </div>
+
+        <!-- end of Angular.js test-->
+
+        <!-- Include menu view -->
+
+        <nav ng-show="$root.logged" ng-controller="MainController as MainCtrl" ng-include="'views/menu.view'"></nav>
+
+        <!-- Pages here -->
+
+        <ng-view></ng-view>
+
+        <footer>
+           <hr>
+           <span class="license"><strong>Licencja:</strong> {{ $root.license.type }}, <strong>Status:</strong> {{ $root.license.status }}</span>
+           <span>©2016 by Paweł Zagrobelny, all rights reserved</span>
+        </footer>
+
+   </section>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+    <!-- Insert this line above script imports  -->
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+    <!-- normal script imports etc  -->
+    <script src="vendor/jquery.min.js"></script>
+
+    <!-- Insert this line after script imports -->
+    <script>if (window.module) module = window.module;</script>
+
+    <!-- Modules -->
+
+    <script src="modules/sha.mod.js"></script> <!-- Modul for hashing passwords -->
+
+    <!-- Angular vendor -->
+
+    <script src="vendor/bootstrap.min.js"></script>
+    <script src="vendor/angular.min.js"></script>
+    <script src="vendor/angular-animate.min.js"></script>
+    <script src="vendor/angular-route.min.js"></script>
+    <script src="vendor/angular-resource.min.js"></script>
+    <script src="vendor/app.js"></script>
+
+    <!-- Controllers -->
+
+    <script src="controllers/main.con.js"></script>
+    <script src="controllers/login.con.js"></script>
+    <script src="controllers/announcements.con.js"></script>
+    <script src="controllers/rekordy.con.js"></script>
+    <script src="controllers/user.con.js"></script>
+
+    <!-- Routes -->
+
+    <script src="vendor/config/routing.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,422 @@
+/* Basic styling */
+body {
+
+    /*we don't want eleements to be selectbale */
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;
+
+}
+
+/* Content properties */
+
+.content {
+
+  width:1000px; /* set length to 1000 */
+  margin:0 auto; /* mak it centered */
+  margin-top:50px;
+  padding:0px 10px;
+  position:relative;
+
+}
+
+/* rute box properties */
+
+ng-view{
+
+  display:block;
+  width:1000px;
+  position:relative;
+
+}
+
+/* loading alert */
+
+div.loading {
+
+    width:450px;
+    display:none;
+    margin-left: 550px;
+    position: absolute;
+    top: 223px;
+    z-index: 1000000;
+
+}
+
+/* Nav styling */
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+
+  color: #32afc4;
+
+}
+
+nav .searchBox {
+display:block;
+width:220px;
+float:right;
+}
+
+nav .searchBox input {
+width:170px;
+display:inline-block;
+vertical-align:top;
+}
+nav .searchBox button {
+float:right;
+}
+
+nav .searchBox input {
+margin:0 0;
+}
+
+/* user info box */
+
+.user {
+
+  float:right;
+  width: 300px;
+  text-align: right;
+  position:relative;
+  top:30px;
+
+}
+
+.user img.avatar {
+
+  float: right;
+  border-radius:100%;
+  width: 45px;
+  height: 45px;
+  border: 2px solid #32afc4;
+  margin-left:10px;
+  clear:both;
+
+}
+
+.user img.star {
+
+    bottom: 0;
+    height: 15px;
+    position: absolute;
+    right: 0;
+    width: 15px;
+    z-index: 2;
+
+}
+
+
+.user i {
+
+  display:block;
+  width:100%;
+
+}
+.user b {
+
+  display:block;
+  width:100%;
+  margin: 3px 0px 0 0;
+
+}
+
+.user span {
+
+  opacity: 0.7;
+
+}
+
+/* footer */
+
+footer hr {
+
+  margin-bottom:0px;
+
+}
+
+footer span {
+
+  opacity:0.7;
+  font-size: 9pt;
+  margin:10px 5px;
+  float:left;
+
+}
+
+footer span.license {
+
+  float:right;
+
+}
+
+
+/* get rid of links decoration */
+
+a {
+
+  text-decoration: none;
+  color: #000;
+
+}
+
+a:hover {
+
+  text-decoration: none;
+
+}
+
+/* set form elements styling */
+
+input, select {
+
+  max-width:400px;
+  margin:10px 0px;
+  border-radius:0px;
+
+}
+
+/* table decoration */
+
+thead {
+
+  background-color: #32afc4 !important;
+  color: #fff !important;
+  border: none;
+
+}
+
+tr.urgent {
+
+  background-color: #ebcccc;
+
+}
+
+tr.urgent:hover {
+
+   background-color: #ebcccc !important;
+
+}
+
+tr.finished, tr.Kierownik {
+
+    background-color: #d0e9c6;
+
+}
+
+tr.finished:hover,  tr.Kierownik:hover {
+
+    background-color: #d0e9c6 !important;
+
+}
+
+tr.towork {
+
+    background-color: #c4e3f3;
+
+}
+
+tr.towork:hover {
+
+    background-color: #c4e3f3 !important;
+
+}
+
+/*modal customization */
+
+.modal-backdrop {
+
+  z-index:1000000;
+
+}
+
+.modal {
+
+  z-index:1000001;
+
+}
+
+.modal-content {
+
+  border-radius:0px;
+  box-shadow: none;
+  margin-top:10%;
+  border:0px;
+
+}
+
+.modal-header {
+
+  background-color: #32afc4 !important;
+  border-color: #32afc4 !important;
+  color: #fff !important;
+
+}
+
+
+/* Welcome box */
+
+#welcomeBox {
+
+  display:block;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background: #fff;
+  z-index:1000001;
+  overflow:hidden;
+
+
+}
+
+#welcomeBox .loadingBox {
+
+  position:relative;
+  z-index:1000003;
+  display:block;
+  width:100%;
+  margin-top: 20%;
+  text-align:center;
+  color:#ffff;
+
+}
+
+#welcomeBox .blueBG {
+
+  width: 100%;
+  height: 100%;
+  position: absolute;;
+  top: 0px;
+  left: 0px;
+  background: #32afc4;
+  z-index: 1000001;
+  display:none;
+
+}
+
+#welcomeBox #logoBox {
+
+  position:relative;
+  width:442px;
+  height:270px;
+  margin:0 auto;
+
+}
+
+#welcomeBox img {
+
+  position:absolute;
+  top:0px;
+  left:0px;
+  width:100%;
+
+}
+
+#welcomeBox h2, #welcomeBox h2 small {
+
+   color: #32afc4;
+
+}
+
+/* fadeBox */
+
+#fadeBox {
+
+  display:block;
+  position:absolute;
+  top:0px;
+  left:0px;
+  width:100%;
+  height:100%;
+  z-index:900;
+  background:rgba(255,255,255,0.8);
+
+}
+
+/* Login page */
+
+.loginBox {
+
+  width:250px;
+  margin:0 auto;
+  margin-top:20px;
+  text-align:center;
+  color: #fff;
+
+}
+
+.loginBox input {
+
+  margin:10px 5px;
+  font-size:12pt;
+
+}
+
+
+/* Annoucements */
+
+
+.panel-primary {
+
+    border-color: #32afc4 !important;
+
+
+}
+.panel-primary > .panel-heading {
+    background-color: #32afc4 !important;
+    border-color: #32afc4 !important;
+    color: #fff !important;
+    border-radius: 0px !important;
+}
+
+
+/* Produkcja */
+
+
+table.records th span {
+
+  font-size: 10px;
+  color: #fff;
+  margin: 0 5px;
+  position: relative;
+  top: 1px;
+  cursor: pointer;
+
+}
+
+td.dzialania a, tr > td > a {
+
+    display:inline-block;
+    font-size:12pt;
+    margin:0px 3px;
+    opacity:0.7;
+    cursor:pointer;
+
+}
+
+td.dzialania a, tr > td > a {
+
+  position: relative;
+  top: 3px !important;
+
+}
+
+td.dzialania a:hover {
+
+  opacity:1;
+
+}
+
+
+td.dzialania a.separator {
+
+  width:10px;
+  text-align:center;
+  position: relative;
+  top:-2px;
+
+}
